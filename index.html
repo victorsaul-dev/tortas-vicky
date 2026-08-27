@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#C8252A">
+<title>Super Tortas Vicky — Santiago Ixcuintla</title>
+<meta name="description" content="Las mejores tortas, hamburguesas y burritos de Santiago Ixcuintla, Nayarit. Pide por WhatsApp o llámanos.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand:      #C8252A;
+    --brand-dark: #8B1519;
+    --accent:     #F5A623;
+    --bg:         #0F0F0F;
+    --surface:    #1A1A1A;
+    --surface2:   #242424;
+    --surface3:   #2E2E2E;
+    --text:       #F0EDE8;
+    --muted:      #888;
+    --wp-green:   #25D366;
+    --radius:     14px;
+    --radius-sm:  8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 20px 28px;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,15,15,1) 0%, rgba(15,15,15,.6) 45%, rgba(15,15,15,.1) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(200,37,42,.9);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .hero-logo {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid var(--brand);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 14vw, 76px);
+    line-height: .9;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0,0,0,.7);
+    margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 18px; font-weight: 500; }
+
+  .status-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(6px);
+    color: rgba(255,255,255,.85);
+  }
+  .status-pill.open {
+    background: rgba(37,211,102,.15);
+    color: var(--wp-green);
+    border: 1px solid rgba(37,211,102,.3);
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--wp-green);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  .cta-group { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+  .cta-wp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: var(--wp-green);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: filter .15s, transform .15s;
+    box-shadow: 0 4px 24px rgba(37,211,102,.4);
+    letter-spacing: .01em;
+  }
+  .cta-wp:active { filter: brightness(.88); transform: scale(.98); }
+  .cta-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: filter .15s, transform .15s;
+    box-shadow: 0 4px 24px rgba(200,37,42,.35);
+    white-space: nowrap;
+  }
+  .cta-call:active { filter: brightness(.88); transform: scale(.98); }
+
+  /* SECTIONS */
+  .section { padding: 28px 20px; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  /* CAROUSEL */
+  .carousel-outer {
+    width: 100%;
+    overflow: hidden;        /* ← contiene el track, sin salirse */
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    padding-bottom: 4px;
+  }
+  .carousel-outer:active { cursor: grabbing; }
+  .carousel-track {
+    display: flex;
+    gap: 10px;
+    width: max-content;      /* crece con el contenido */
+    will-change: transform;
+    padding: 4px 2px;
+  }
+  .gallery-card {
+    flex-shrink: 0;
+    width: 130px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+    pointer-events: none;    /* el drag lo maneja el outer */
+  }
+  .gallery-card img { width: 100%; height: 100px; object-fit: cover; display: block; }
+  .gallery-card-label { padding: 7px 10px; font-size: 11px; font-weight: 600; }
+  .gallery-card-price { padding: 0 10px 9px; font-size: 12px; font-weight: 700; color: var(--accent); }
+
+  /* HORARIOS */
+  .horario-card { background: var(--surface); border-radius: var(--radius); overflow: hidden; }
+  .horario-header {
+    background: var(--brand);
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .horario-body {
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    font-size: 13.5px;
+  }
+  .horario-body .dia { color: var(--muted); }
+  .horario-body .hora { font-weight: 600; }
+  .horario-body .sucursal-name {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 10px;
+    border-top: 1px solid var(--surface2);
+    margin-top: 4px;
+  }
+  .horario-body .sucursal-name:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+  /* MENU */
+  .menu-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .menu-tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--surface);
+    color: var(--muted);
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .tab.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: flex; flex-direction: column; gap: 4px; }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+  }
+  .menu-item-thumb { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+  .menu-item-thumb-placeholder {
+    width: 52px; height: 52px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .menu-item-info { flex: 1; min-width: 0; }
+  .menu-item-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .menu-item-desc { font-size: 12px; color: var(--muted); }
+  .menu-price { font-weight: 700; color: var(--accent); font-size: 16px; margin-left: 4px; flex-shrink: 0; }
+
+  /* SUCURSALES */
+  .sucursal-card { background: var(--surface); border-radius: var(--radius); overflow: hidden; margin-bottom: 12px; }
+  .sucursal-card:last-child { margin-bottom: 0; }
+  .sucursal-img { width: 100%; height: 140px; object-fit: cover; display: block; }
+  .sucursal-body { padding: 14px 16px; }
+  .sucursal-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .sucursal-addr { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .sucursal-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .horario-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(245,166,35,.12);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .maps-link-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 4px 10px;
+    background: var(--surface2);
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* MAP BTN */
+  .map-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    margin: 0 20px 28px;
+    border: 1px solid var(--surface3);
+  }
+
+  /* QR */
+  .qr-section {
+    margin: 0 20px 28px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .qr-section img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background: white;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .qr-text h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .qr-text p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  /* FOOTER */
+  footer {
+    background: var(--surface);
+    padding: 28px 20px 32px;
+    text-align: center;
+    border-top: 1px solid var(--surface2);
+  }
+  .footer-logo {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 10px;
+    display: block;
+    border: 2px solid var(--brand);
+  }
+  footer .brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--brand); margin-bottom: 6px; }
+  footer .footer-info { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  footer a.tel-link { color: var(--text); text-decoration: none; font-weight: 600; }
+  footer .dev-credit { margin-top: 16px; font-size: 11px; color: #444; }
+  footer .dev-credit a { color: #555; text-decoration: none; }
+
+  /* FAB */
+  .fab {
+    position: fixed;
+    bottom: 24px;
+    right: 18px;
+    width: 58px;
+    height: 58px;
+    background: var(--wp-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,.55);
+    text-decoration: none;
+    z-index: 100;
+    animation: float 3.5s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+  .fab::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,.3);
+    animation: ring 3.5s ease-in-out infinite;
+  }
+  @keyframes ring { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0;transform:scale(1.3)} }
+
+  .divider { height: 1px; background: var(--surface2); margin: 0 20px; }
+  img { display: block; }
+
+  .order-link {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(37,211,102,.1);
+    border: 1.5px solid rgba(37,211,102,.35);
+    color: var(--wp-green);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fab, .fab::before, .dot { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="imagenes/local-tortasvicky.jpg" alt="Interior Super Tortas Vicky" fetchpriority="high">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="hero-logo" src="imagenes/logo2-tortasvicky.jpg" alt="Logo Super Tortas Vicky" loading="lazy">
+    <span class="hero-badge">📍 Santiago Ixcuintla, Nayarit</span>
+    <h1>Super Tortas<br><span>Vicky</span></h1>
+    <p class="hero-sub">Tortas, hamburguesas, y más</p>
+    <div class="status-bar">
+      <span class="status-pill open" id="open-status"><span class="dot"></span> Abierto ahora</span>
+      <span class="status-pill">🛵 A domicilio</span>
+      <span class="status-pill">🪑 En local</span>
+    </div>
+    <div class="cta-group">
+      <a class="cta-wp"
+         href="https://wa.me/523231050023?text=Hola%2C%20quisiera%20hacer%20un%20pedido%20%F0%9F%8C%AE%0A%0ANombre%3A%20%0APedido%3A%20%0A%C2%BFA%20domicilio%20o%20para%20recoger%3F%3A%20"
+         target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir por WhatsApp
+      </a>
+      <a class="cta-call" href="tel:+523231050023" aria-label="Llamar al negocio">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Llamar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA — carrusel infinito -->
+<section class="section">
+  <p class="section-label">Nuestros platillos</p>
+  <div class="carousel-outer" id="carouselOuter">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="gallery-card">
+        <img src="imagenes/torta1-vicky.jpg" alt="Torta especial" loading="lazy">
+        <div class="gallery-card-label">Tortas</div>
+      </div>
+      <div class="gallery-card">
+        <img src="imagenes/sandwich-vicky.jpg" alt="Sandwich" loading="lazy">
+        <div class="gallery-card-label">Sandwich</div>
+      </div>
+      <div class="gallery-card">
+        <img src="imagenes/sincronizada-vicky.jpg" alt="Sincronizadas" loading="lazy">
+        <div class="gallery-card-label">Sincronizadas</div>
+      </div>
+      <div class="gallery-card">
+        <img src="imagenes/burritos-vicky.jpg" alt="Sincronizadas" loading="lazy">
+        <div class="gallery-card-label">Burritos(3/orden)</div>
+      </div>
+      <div class="gallery-card">
+        <img src="imagenes/hamburguesa-vicky.jpg" alt="Hamburguesa" loading="lazy">
+        <div class="gallery-card-label">Hamburguesa</div>
+      </div>
+      <div class="gallery-card">
+        <img src="imagenes/papas-vicky.jpg" alt="Papas a la francesa" loading="lazy">
+        <div class="gallery-card-label">Papas a la francesa</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- MENÚ DETALLADO -->
+<section class="section">
+  <p class="section-label">Menú completo</p>
+  <div class="menu-tabs">
+    <button class="tab active" onclick="showTab('tortas',this)">🥖 Tortas</button>
+    <button class="tab" onclick="showTab('hamburguesas',this)">🍔 Hamburguesas</button>
+    <button class="tab" onclick="showTab('extras',this)">🍟 Más</button>
+  </div>
+
+  <div id="tortas" class="menu-panel active">
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/torta2-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Torta sencilla</div><div class="menu-item-desc">1 ingrediente a elegir</div></div>
+      <span class="menu-price">$60</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-thumb-placeholder">🥖</div>
+      <div class="menu-item-info"><div class="menu-item-name">Torta combinada</div><div class="menu-item-desc">2 ingredientes</div></div>
+      <span class="menu-price">$70</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-thumb-placeholder">🥖</div>
+      <div class="menu-item-info"><div class="menu-item-name">Torta triple</div><div class="menu-item-desc">3 ingredientes</div></div>
+      <span class="menu-price">$80</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-thumb-placeholder">⭐</div>
+      <div class="menu-item-info"><div class="menu-item-name">Torta especial</div><div class="menu-item-desc">Pierna, jamón, panela y queso</div></div>
+      <span class="menu-price">$85</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-thumb-placeholder">🔥</div>
+      <div class="menu-item-info"><div class="menu-item-name">Torta súper</div><div class="menu-item-desc">Pierna, queso, jamón, panela, salchicha</div></div>
+      <span class="menu-price">$90</span>
+    </div>
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/sandwich-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Sandwich</div><div class="menu-item-desc">Integral o blanco, sencillo</div></div>
+      <span class="menu-price">$45</span>
+    </div>
+  </div>
+
+  <div id="hamburguesas" class="menu-panel">
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/hamburguesa-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Hamburguesa sencilla</div><div class="menu-item-desc">Carne, lechuga, jitomate</div></div>
+      <span class="menu-price">$75</span>
+    </div>
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/hamburguesa-papas-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Hamburguesa especial</div><div class="menu-item-desc">Jamón, queso y más</div></div>
+      <span class="menu-price">$95</span>
+    </div>
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/papas-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Papas a la francesa</div><div class="menu-item-desc">Crujientes y calientes</div></div>
+      <span class="menu-price">$50</span>
+    </div>
+  </div>
+
+  <div id="extras" class="menu-panel">
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/sincronizada-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Sincronizada sencilla</div><div class="menu-item-desc">Queso asadero, amarillo y jamón</div></div>
+      <span class="menu-price">$55</span>
+    </div>
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/sincronizada-vicky.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Sincronizada especial</div><div class="menu-item-desc">Queso asadero, amarillo, carne y jamón</div></div>
+      <span class="menu-price">$75</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-thumb-placeholder">🌯</div>
+      <div class="menu-item-info"><div class="menu-item-name">Burritos — Carne y verdura</div><div class="menu-item-desc">3 piezas</div></div>
+      <span class="menu-price">$60</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-thumb-placeholder">🌯</div>
+      <div class="menu-item-info"><div class="menu-item-name">Burritos — Pollo</div><div class="menu-item-desc">3 piezas</div></div>
+      <span class="menu-price">$75</span>
+    </div>
+    <div class="menu-item">
+      <img class="menu-item-thumb" src="imagenes/jugo-local-mercado.jpg" alt="" loading="lazy">
+      <div class="menu-item-info"><div class="menu-item-name">Bebidas / Jugos</div><div class="menu-item-desc">Refrescos, chocomilk, jugos naturales</div></div>
+      <span class="menu-price">desde $25</span>
+    </div>
+  </div>
+
+  <a class="order-link"
+     href="https://wa.me/523231050023?text=Hola%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%8C%AE%0A%0ANombre%3A%20%0APedido%3A%20%0A%C2%BFA%20domicilio%20o%20para%20recoger%3F%3A%20"
+     target="_blank" rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Hacer mi pedido ahora →
+  </a>
+</section>
+
+<div class="divider"></div>
+
+<!-- HORARIOS -->
+<section class="section">
+  <p class="section-label">Horarios</p>
+  <div class="horario-card">
+    <div class="horario-header"><span class="dot"></span> Horarios de atención</div>
+    <div class="horario-body">
+      <span class="sucursal-name">📍 Local Principal</span>
+      <span class="dia">Lunes – Viernes</span><span class="hora">8:00 am – 5:00 pm</span>
+      <span class="sucursal-name">📍 Jardín Juárez</span>
+      <span class="dia">Lunes – Viernes</span><span class="hora">8:00 am – 5:00 pm</span>
+      <span class="sucursal-name">📍 Mercado Municipal</span>
+      <span class="dia">Lunes - viernes</span><span class="hora">8:00 am – 5:00 pm</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SUCURSALES -->
+<section class="section">
+  <p class="section-label">¿Dónde encontrarnos?</p>
+
+  <div class="sucursal-card">
+    <img class="sucursal-img" src="imagenes/vista-googlemaps.jpg" alt="Local principal" loading="lazy">
+    <div class="sucursal-body">
+      <div class="sucursal-name">📍 Local Principal</div>
+      <p class="sucursal-addr">Nicolás Echevarría 182, Santiago Ixcuintla</p>
+      <div class="sucursal-footer">
+        <span class="horario-tag">🕐 7:30 am – 5:00 pm</span>
+        <a class="maps-link-small" href="https://maps.google.com/?q=Super+Tortas+Vicky+Santiago+Ixcuintla+Nicolas+Echevarria" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sucursal-card">
+    <img class="sucursal-img" src="imagenes/local-jaridnjuarez.jpg" alt="Jardín Juárez" loading="lazy" style="object-position: center 30%;">
+    <div class="sucursal-body">
+      <div class="sucursal-name">📍 Jardín Juárez</div>
+      <p class="sucursal-addr">Frente a Sukarne, estanquillo negro</p>
+      <div class="sucursal-footer">
+        <span class="horario-tag">🕐 8:00 am – 2:00 pm</span>
+        <a class="maps-link-small" href="https://maps.google.com/?q=Jardin+Juarez+Santiago+Ixcuintla+Nayarit" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sucursal-card">
+    <img class="sucursal-img" src="imagenes/local-mercado-vicky.jpg" alt="Mercado Municipal" loading="lazy" style="object-position: center 30%;">
+    <div class="sucursal-body">
+      <div class="sucursal-name">📍 Mercado Municipal</div>
+      <p class="sucursal-addr">Por la calle Ocampo entre Rayón y Bravo</p>
+      <div class="sucursal-footer">
+        <span class="horario-tag">🕐 8:00 am – 2:00 pm</span>
+        <a class="maps-link-small" href="https://maps.google.com/?q=Jardin+Juarez+Santiago+Ixcuintla+Nayarit" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<a class="map-btn" href="https://maps.google.com/?q=Super+Tortas+Vicky+Santiago+Ixcuintla+Nayarit" target="_blank" rel="noopener">
+  🗺️ Abrir en Google Maps
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo" src="imagenes/logo2-tortasvicky.jpg" alt="Logo" loading="lazy">
+  <div class="brand-name">Super Tortas Vicky</div>
+  <p class="footer-info">📞 <a class="tel-link" href="tel:+523231050023">323 105 0023</a></p>
+  <p class="footer-info">Santiago Ixcuintla, Nayarit</p>
+  <p class="dev-credit">Sitio desarrollado por VB Dev · <a href="https://wa.me/523231434736?text=Hola%2C%20quiero%20un%20sitio%20web%20como%20el%20de%20Tortas%20Vicky">Quiero un sitio así</a></p>
+</footer>
+
+<!-- FAB -->
+<a class="fab"
+   href="https://wa.me/523231050023?text=Hola%2C%20quisiera%20hacer%20un%20pedido%20%F0%9F%8C%AE%0A%0ANombre%3A%20%0APedido%3A%20%0A%C2%BFA%20domicilio%20o%20para%20recoger%3F%3A%20"
+   target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ── Tabs del menú ── */
+function showTab(id, btn) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── Estado abierto/cerrado ── */
+(function() {
+  var now = new Date();
+  var dec = now.getHours() + now.getMinutes() / 60;
+  var isOpen = (dec >= 7.5 && dec < 17) || (dec >= 18 && dec < 21);
+  var el = document.getElementById('open-status');
+  if (el && !isOpen) {
+    el.style.cssText = 'background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)';
+    el.innerHTML = '🔴 Cerrado ahora';
+  }
+})();
+
+/* ── Carrusel infinito ── */
+(function() {
+  var outer = document.getElementById('carouselOuter');
+  var track = document.getElementById('carouselTrack');
+  if (!outer || !track) return;
+
+  /* Duplicar tarjetas para loop sin fin */
+  var origCards = Array.from(track.children);
+  origCards.forEach(function(card) { track.appendChild(card.cloneNode(true)); });
+
+  function halfW() { return track.scrollWidth / 2; }
+
+  var offset  = 0;
+  var speed   = 0.5;
+  var paused  = false;
+  var drag    = false;
+  var startX  = 0;
+  var startOff = 0;
+
+  function tick() {
+    if (!paused) {
+      offset += speed;
+      if (offset >= halfW()) offset -= halfW();
+      if (offset < 0)        offset += halfW();
+      track.style.transform = 'translateX(' + (-offset) + 'px)';
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  function clamp(val) {
+    var h = halfW();
+    if (val >= h) val -= h;
+    if (val < 0)  val += h;
+    return val;
+  }
+
+  /* Touch */
+  outer.addEventListener('touchstart', function(e) {
+    paused = drag = true;
+    startX = e.touches[0].clientX;
+    startOff = offset;
+  }, { passive: true });
+
+  outer.addEventListener('touchmove', function(e) {
+    if (!drag) return;
+    offset = clamp(startOff + (startX - e.touches[0].clientX));
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+  }, { passive: true });
+
+  outer.addEventListener('touchend', function() {
+    drag = false;
+    setTimeout(function() { paused = false; }, 900);
+  });
+
+  /* Mouse */
+  outer.addEventListener('mousedown', function(e) {
+    paused = drag = true;
+    startX = e.clientX;
+    startOff = offset;
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', function(e) {
+    if (!drag) return;
+    offset = clamp(startOff + (startX - e.clientX));
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+  });
+
+  window.addEventListener('mouseup', function() {
+    if (!drag) return;
+    drag = false;
+    setTimeout(function() { paused = false; }, 900);
+  });
+})();
+</script>
+
+</body>
+</html>
