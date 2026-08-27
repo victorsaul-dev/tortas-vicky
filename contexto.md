@@ -7,3 +7,10 @@ varias nuevas imagenes del local que pueden usarse.
 tambien esta disponible ya una imagen con condigo qr que redigira a la pagina web, solo se debe ghsotear en github.
 otra opción puede ser mejorar una simple pagina web a una pequeña app web, donde los dueños del local tendra un dashboard sencillo oculto de la vista del cliente en el sitio web, ingresaran con un login y podran ver los pedidos, cambiarlos de estado, ver registros, estadisticas, y un boton para apagar y prender la atención de un bot automatico por whatsapp cuando ellos quieran, así pueden decidir usarlo solo en horas pico, solo cuando quieran o cuando lo necesiten.
 en un futuro tal vez se pueda implementar la atención automatica de un bot por llamada.
+
+url en google maps de cada local:
+principal: https://www.google.com/maps/@21.8131144,-105.2010684,3a,75y,205.39h,82.3t/data=!3m7!1e1!3m5!1siYQKHTz-dZF6HeFEkKq2dg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.6960073961307245%26panoid%3DiYQKHTz-dZF6HeFEkKq2dg%26yaw%3D205.3876082459579!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNC4wIKXMDSoASAFQAw%3D%3D
+
+local del mercado: https://www.google.com/maps/@21.8075428,-105.2073811,3a,75y,358.39h,71.33t/data=!3m7!1e1!3m5!1s3UKiP7SQhj-43Au8XHmywQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D18.668380737499305%26panoid%3D3UKiP7SQhj-43Au8XHmywQ%26yaw%3D358.3934779468752!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNC4wIKXMDSoASAFQAw%3D%3D
+
+local del jardin juarez: https://www.google.com/maps/@21.8107171,-105.2080568,3a,75y,231.72h,59.94t/data=!3m7!1e1!3m5!1sgqWrSsdFsqT9EM7P4aQhDg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D30.064962514732798%26panoid%3DgqWrSsdFsqT9EM7P4aQhDg%26yaw%3D231.7180804542925!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDgyNC4wIKXMDSoASAFQAw%3D%3D
